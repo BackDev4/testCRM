@@ -2,30 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FormDataRequest;
 use App\Models\FormData;
 use Illuminate\Http\Request;
-use Ufee\Amo\Models\Contact;
-use Ufee\Amo\Models\Lead;
-use Ufee\Amo\AmoAPI;
 
 class FormDataController extends Controller
 {
-    public function create(Request $request)
+    public function create(FormDataRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'city' => 'required',
-            'date' => 'required|date',
-            'form' => 'required',
-            'phone' => 'required|min:9',
-        ]);
-
         $formData = new FormData();
-        $formData->hook = json_encode($validatedData);
+        $formData->hook = json_encode($request->validated());
         $formData->form = $request->form;
         $formData->save();
 
-        $this->createTaskAndDeal($validatedData);
+        $this->createTaskAndDeal($request->validated());
 
         return response()->json($formData);
     }
@@ -39,19 +29,21 @@ class FormDataController extends Controller
         $name = $data['name'];
         $phone = $data['phone'];
         $city = $data['city'];
+        $fio = $data['fio'];
+        $price = $data['price'];
 
         $leadsService = $amo->leads();
         $deal = $leadsService->create();
         $deal->name = $name;
-        $deal->sale = 100;
+        $deal->sale = $price;
 
         $deal->attachTag($city);
         $deal->save();
 
         $contactsService = $amo->contacts();
         $contact = $contactsService->create();
-        $contact->name = "ФИО";
-        $contact->cf('Телефон')->setValue($phone,"Work");
+        $contact->name = $fio;
+        $contact->cf('Телефон')->setValue($phone, "Work");
         $contact->save();
 
         $deal->contacts_id = [$contact->id];
