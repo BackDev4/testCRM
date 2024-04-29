@@ -1,0 +1,98 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://127.0.0.1'
+paths:
+  /api/test:
+    post:
+      summary: 'Создает новую запись формы данных.'
+      operationId: ''
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  hook: '{"fio":"Иванов Иван Иванович","name":"Новая запись","price":100,"city":"Москва","date":"2024-04-30","form":"Форма №1","phone":"1234567890"}'
+                  form: 'Форма №1'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  hook:
+                    type: string
+                    example: '{"fio":"Иванов Иван Иванович","name":"Новая запись","price":100,"city":"Москва","date":"2024-04-30","form":"Форма №1","phone":"1234567890"}'
+                  form:
+                    type: string
+                    example: 'Форма №1'
+        422:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Неверный формат данных'
+                properties:
+                  message:
+                    type: string
+                    example: 'Неверный формат данных'
+      tags:
+        - FormData
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fio:
+                  type: string
+                  description: ФИО.
+                  example: 'Иванов Иван Иванович'
+                name:
+                  type: string
+                  description: Наименование.
+                  example: 'Новая запись'
+                price:
+                  type: integer
+                  description: Цена.
+                  example: 100
+                city:
+                  type: string
+                  description: Город.
+                  example: Москва
+                date:
+                  type: string
+                  description: Дата.
+                  example: '2024-04-30'
+                form:
+                  type: string
+                  description: Форма.
+                  example: 'Форма №1'
+                phone:
+                  type: string
+                  description: 'Номер телефона.'
+                  example: '1234567890'
+              required:
+                - fio
+                - name
+                - price
+                - city
+                - date
+                - form
+                - phone
+      security: []
+tags:
+  -
+    name: FormData
+    description: ''

@@ -1,0 +1,72 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/127.0.0.1"
+        }
+    ],
+    "info": {
+        "name": "Laravel",
+        "_postman_id": "1f506bce-4cf3-433d-bacf-8b07f039bab0",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "FormData",
+            "description": "",
+            "item": [
+                {
+                    "name": "\u0421\u043e\u0437\u0434\u0430\u0435\u0442 \u043d\u043e\u0432\u0443\u044e \u0437\u0430\u043f\u0438\u0441\u044c \u0444\u043e\u0440\u043c\u044b \u0434\u0430\u043d\u043d\u044b\u0445.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/test",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/test"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"fio\":\"\u0418\u0432\u0430\u043d\u043e\u0432 \u0418\u0432\u0430\u043d \u0418\u0432\u0430\u043d\u043e\u0432\u0438\u0447\",\"name\":\"\u041d\u043e\u0432\u0430\u044f \u0437\u0430\u043f\u0438\u0441\u044c\",\"price\":100,\"city\":\"\u041c\u043e\u0441\u043a\u0432\u0430\",\"date\":\"2024-04-30\",\"form\":\"\u0424\u043e\u0440\u043c\u0430 \u21161\",\"phone\":\"1234567890\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"id\": 1,\n  \"hook\": \"{\\\"fio\\\":\\\"\u0418\u0432\u0430\u043d\u043e\u0432 \u0418\u0432\u0430\u043d \u0418\u0432\u0430\u043d\u043e\u0432\u0438\u0447\\\",\\\"name\\\":\\\"\u041d\u043e\u0432\u0430\u044f \u0437\u0430\u043f\u0438\u0441\u044c\\\",\\\"price\\\":100,\\\"city\\\":\\\"\u041c\u043e\u0441\u043a\u0432\u0430\\\",\\\"date\\\":\\\"2024-04-30\\\",\\\"form\\\":\\\"\u0424\u043e\u0440\u043c\u0430 \u21161\\\",\\\"phone\\\":\\\"1234567890\\\"}\",\n  \"form\": \"\u0424\u043e\u0440\u043c\u0430 \u21161\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\n  \"message\": \"\u041d\u0435\u0432\u0435\u0440\u043d\u044b\u0439 \u0444\u043e\u0440\u043c\u0430\u0442 \u0434\u0430\u043d\u043d\u044b\u0445\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

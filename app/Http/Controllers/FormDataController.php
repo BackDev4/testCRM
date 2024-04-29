@@ -4,10 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FormDataRequest;
 use App\Models\FormData;
-use Illuminate\Http\Request;
 
 class FormDataController extends Controller
 {
+    /**
+     * @group FormData
+     *
+     * Создает новую запись формы данных.
+     *
+     * @bodyParam fio string required ФИО. Example: Иванов Иван Иванович
+     * @bodyParam name string required Наименование. Example: Новая запись
+     * @bodyParam price integer required Цена. Example: 100
+     * @bodyParam city string required Город. Example: Москва
+     * @bodyParam date string required Дата. Example: 2024-04-30
+     * @bodyParam form string required Форма. Example: Форма №1
+     * @bodyParam phone string required Номер телефона. Example: 1234567890
+     *
+     * @response {
+     *   "id": 1,
+     *   "hook": "{\"fio\":\"Иванов Иван Иванович\",\"name\":\"Новая запись\",\"price\":100,\"city\":\"Москва\",\"date\":\"2024-04-30\",\"form\":\"Форма №1\",\"phone\":\"1234567890\"}",
+     *   "form": "Форма №1"
+     * }
+     *
+     * @response 422 {
+     *   "message": "Неверный формат данных"
+     * }
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+
     public function create(FormDataRequest $request)
     {
         $formData = new FormData();
